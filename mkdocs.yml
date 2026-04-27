@@ -1,0 +1,61 @@
+site_name: Voicebox .NET Documentation
+site_description: Documentation for the tryAGI .NET SDK for Voicebox.
+site_url: https://tryAGI.github.io/Voicebox/
+repo_url: https://github.com/tryAGI/Voicebox
+repo_name: tryAGI/Voicebox
+edit_uri: edit/main/docs/
+nav:
+- Overview: index.md
+# EXAMPLES:START
+- Examples:
+  - Health: examples/health.md
+  - Profiles: examples/profiles.md
+  - Models: examples/models.md
+  - Generate Speech: examples/generate.md
+# EXAMPLES:END
+        
+theme:
+  name: tryagi
+  favicon: 'media/icon128.png'
+
+plugins:
+  - search
+  - copy-to-llm
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - meta
+  - toc:
+      permalink: ""
+      slugify: !!python/name:pymdownx.slugs.uslugify
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.highlight:
+      linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.progressbar
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: math
+          class: arithmatex
+          format: !!python/name:pymdownx.arithmatex.fence_mathjax_format
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - pymdownx.tabbed:
+      alternate_style: true

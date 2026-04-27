@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Nuget">
+    <PackageId>tryAGI.Voicebox</PackageId>
+    <Description>C# SDK for the Voicebox local API -- voice generation, transcription, profiles, captures, and stories.</Description>
+    <PackageTags>csharp;dotnet;sdk;ai;autosdk;openapi;voicebox;text-to-speech;speech-to-text;transcription;voice-cloning</PackageTags>
+  </PropertyGroup>
+
+</Project>
