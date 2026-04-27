@@ -2,7 +2,7 @@
 
 Generate speech from text using an existing Voicebox profile.
 
-This example assumes `using Voicebox;` is in scope and a Voicebox local server is running.
+This example assumes `using Voicebox;` is in scope and a Voicebox local server is running. The generated client defaults to `http://127.0.0.1:17493`.
 
 ```csharp
 var client = Client;
