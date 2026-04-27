@@ -1,0 +1,55 @@
+name: Voicebox E2E
+on:
+  workflow_dispatch:
+    inputs:
+      run-tts-e2e:
+        description: Run the full cloned-voice TTS generation test. Requires the committed or secret-provided reference audio path.
+        required: true
+        default: false
+        type: boolean
+      reference-audio-path:
+        description: Optional path to a 2-30 second reference audio file available in the workflow workspace.
+        required: false
+        default: ''
+        type: string
+      language:
+        description: Voicebox language code for the cloned profile.
+        required: true
+        default: ru
+        type: string
+
+jobs:
+  voicebox-e2e:
+    name: Voicebox container endpoint tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout SDK
+        uses: actions/checkout@v6
+
+      - name: Checkout Voicebox upstream
+        uses: actions/checkout@v6
+        with:
+          repository: jamiepine/voicebox
+          path: voicebox-upstream
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+
+      - name: Validate full TTS inputs
+        if: ${{ inputs['run-tts-e2e'] && inputs['reference-audio-path'] == '' }}
+        run: |
+          echo "reference-audio-path is required when run-tts-e2e is true."
+          exit 1
+
+      - name: Run endpoint tests
+        run: dotnet test src/tests/IntegrationTests/ --logger GitHubActions
+        env:
+          VOICEBOX_TEST_ENVIRONMENT: Container
+          VOICEBOX_TESTCONTAINERS_CONTEXT: ${{ github.workspace }}/voicebox-upstream
+          VOICEBOX_RUN_TTS_E2E: ${{ inputs['run-tts-e2e'] }}
+          VOICEBOX_REFERENCE_AUDIO_PATH: ${{ inputs['reference-audio-path'] }}
+          VOICEBOX_LANGUAGE: ${{ inputs.language }}
+          VOICEBOX_ENGINE: qwen
+          VOICEBOX_MODEL_SIZE: 0.6B
+          VOICEBOX_TTS_TIMEOUT_SECONDS: 900

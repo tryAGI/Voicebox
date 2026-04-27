@@ -88,6 +88,92 @@ foreach (var model in status.Models.Take(5))
 }
 ```
 
+### Voice Cloning
+Create a cloned voice profile from reference audio, then optionally generate TTS with that profile.
+
+```csharp
+var client = Client;
+var referenceAudio = GetReferenceAudio(requireExternalAudio: false);
+VoiceProfileResponse? profile = null;
+
+try
+{
+    // Create a temporary cloned voice profile.
+    // Set VOICEBOX_REFERENCE_AUDIO_PATH to use a real 2-30 second voice clip; otherwise this test uses a generated WAV only for endpoint coverage.
+    profile = await client.CreateProfileProfilesPostAsync(
+        name: $"tryagi-sdk-e2e-{Guid.NewGuid():N}",
+        description: "Temporary profile created by tryAGI.Voicebox integration tests.",
+        language: TestLanguage,
+        voiceType: "cloned",
+        defaultEngine: TestEngine);
+
+    // Attach reference voice audio and its transcript to the profile.
+    var sample = await client.AddProfileSampleProfilesProfileIdSamplesPostAsync(
+        profileId: profile.Id,
+        file: referenceAudio.Bytes,
+        filename: referenceAudio.Filename,
+        referenceText: referenceAudio.ReferenceText);
+
+    // Read the sample list back through the API and update the transcript.
+    var samples = await client.GetProfileSamplesProfilesProfileIdSamplesGetAsync(profile.Id);
+
+    var updatedReferenceText = $"{TestReferenceText} Updated.";
+    var updatedSample = await client.UpdateProfileSampleProfilesSamplesSampleIdPutAsync(
+        sampleId: sample.Id,
+        referenceText: updatedReferenceText);
+
+    // Download the stored sample audio to verify the binary audio endpoint.
+    var sampleAudio = await DownloadAudioAsync($"samples/{sample.Id}");
+}
+finally
+{
+    await TryDeleteProfileAsync(profile?.Id);
+}
+```
+
+### Voice Cloning TTS
+Generate speech from a cloned voice profile created at test time.
+
+```csharp
+if (!bool.TryParse(GetOptionalEnvironmentVariable("VOICEBOX_RUN_TTS_E2E"), out var runE2E) || !runE2E)
+{
+    throw new AssertInconclusiveException(
+        "Set VOICEBOX_RUN_TTS_E2E=true and VOICEBOX_REFERENCE_AUDIO_PATH to run the full voice cloning TTS test.");
+}
+
+var client = Client;
+var clonedVoice = await CreateClonedVoiceProfileAsync(requireExternalAudio: true);
+GenerationResponse? generation = null;
+
+try
+{
+    // Generate speech using the newly-created cloned profile.
+    // VOICEBOX_LANGUAGE defaults to ru, VOICEBOX_ENGINE defaults to qwen, and VOICEBOX_MODEL_SIZE defaults to 0.6B for faster local validation.
+    generation = await client.GenerateSpeechGeneratePostAsync(
+        new GenerationRequest
+        {
+            ProfileId = clonedVoice.Profile.Id,
+            Text = TestGeneratedText,
+            Language = TestLanguage,
+            Engine = TestEngine,
+            ModelSize = TestModelSize,
+            Seed = 1,
+            Normalize = true,
+            MaxChunkChars = 300,
+        });
+
+    // Voicebox generates asynchronously, so poll history until completion and then download the produced audio.
+    var completed = await WaitForGenerationAsync(generation.Id);
+
+    var audio = await DownloadAudioAsync($"audio/{generation.Id}");
+}
+finally
+{
+    await TryDeleteGenerationAsync(generation?.Id);
+    await TryDeleteProfileAsync(clonedVoice.Profile.Id);
+}
+```
+
 ### Generate Speech
 Generate speech from text using an existing Voicebox profile.
 

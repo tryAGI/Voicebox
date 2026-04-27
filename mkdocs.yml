@@ -11,6 +11,8 @@ nav:
   - Health: examples/health.md
   - Profiles: examples/profiles.md
   - Models: examples/models.md
+  - Voice Cloning: examples/voice-cloning.md
+  - Voice Cloning TTS: examples/voice-cloning-tts.md
   - Generate Speech: examples/generate.md
 # EXAMPLES:END
         

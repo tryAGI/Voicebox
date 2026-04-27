@@ -3,45 +3,30 @@ namespace Voicebox.IntegrationTests;
 [TestClass]
 public partial class Tests
 {
-    private const string DefaultBaseUrl = "http://127.0.0.1:17493";
-
+    private static VoiceboxTestEnvironment _environment = null!;
     private static VoiceboxClient _client = null!;
 
     public static VoiceboxClient Client => _client;
 
-    public static string BaseUrl { get; private set; } = DefaultBaseUrl;
+    public static string BaseUrl { get; private set; } = VoiceboxClient.DefaultBaseUrl;
 
     [AssemblyInitialize]
     public static async Task AssemblyInit(TestContext context)
     {
-        BaseUrl = GetOptionalEnvironmentVariable("VOICEBOX_BASE_URL") ?? DefaultBaseUrl;
-        _client = new VoiceboxClient(
-            baseUri: new Uri(BaseUrl),
-            options: new AutoSDKClientOptions
-            {
-                Timeout = TimeSpan.FromSeconds(10),
-            });
+        _environment = await VoiceboxTestEnvironment.PrepareAsync();
+        _client = _environment.Client;
+        BaseUrl = _environment.BaseUri.ToString();
 
-        try
-        {
-            _ = await _client.HealthHealthGetAsync();
-        }
-        catch (HttpRequestException e)
-        {
-            throw new AssertInconclusiveException(
-                $"Voicebox server is not reachable at {BaseUrl}. Start Voicebox or set VOICEBOX_BASE_URL. {e.Message}");
-        }
-        catch (TaskCanceledException e)
-        {
-            throw new AssertInconclusiveException(
-                $"Voicebox server did not respond at {BaseUrl}. Start Voicebox or set VOICEBOX_BASE_URL. {e.Message}");
-        }
+        context.WriteLine($"Voicebox integration tests using {_environment.Type} environment at {BaseUrl}");
     }
 
     [AssemblyCleanup]
     public static void AssemblyCleanup()
     {
-        _client?.Dispose();
+        if (_environment is not null)
+        {
+            _environment.DisposeAsync().AsTask().GetAwaiter().GetResult();
+        }
     }
 
     public static string? GetOptionalEnvironmentVariable(string name)
