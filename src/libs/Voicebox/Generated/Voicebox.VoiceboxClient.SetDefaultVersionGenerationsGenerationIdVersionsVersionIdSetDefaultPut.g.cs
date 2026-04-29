@@ -87,8 +87,8 @@ namespace Voicebox
                 PrepareSetDefaultVersionGenerationsGenerationIdVersionsVersionIdSetDefaultPutRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    generationId: generationId,
-                    versionId: versionId);
+                    generationId: generationId!,
+                    versionId: versionId!);
 
                 return __httpRequest;
             }

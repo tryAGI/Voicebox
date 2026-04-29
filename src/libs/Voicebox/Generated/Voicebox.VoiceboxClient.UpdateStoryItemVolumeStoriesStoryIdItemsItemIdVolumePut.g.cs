@@ -101,8 +101,8 @@ namespace Voicebox
                 PrepareUpdateStoryItemVolumeStoriesStoryIdItemsItemIdVolumePutRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    storyId: storyId,
-                    itemId: itemId,
+                    storyId: storyId!,
+                    itemId: itemId!,
                     request: request);
 
                 return __httpRequest;

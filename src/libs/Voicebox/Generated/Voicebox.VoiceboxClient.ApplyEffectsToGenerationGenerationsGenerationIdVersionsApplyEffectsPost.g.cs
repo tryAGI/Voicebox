@@ -96,7 +96,7 @@ namespace Voicebox
                 PrepareApplyEffectsToGenerationGenerationsGenerationIdVersionsApplyEffectsPostRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    generationId: generationId,
+                    generationId: generationId!,
                     request: request);
 
                 return __httpRequest;

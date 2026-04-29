@@ -82,7 +82,7 @@ namespace Voicebox
                 PrepareRegenerateGenerationGenerateGenerationIdRegeneratePostRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    generationId: generationId);
+                    generationId: generationId!);
 
                 return __httpRequest;
             }

@@ -96,7 +96,7 @@ namespace Voicebox
                 PrepareSetChannelVoicesChannelsChannelIdVoicesPutRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    channelId: channelId,
+                    channelId: channelId!,
                     request: request);
 
                 return __httpRequest;

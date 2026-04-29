@@ -82,7 +82,7 @@ namespace Voicebox
                 PrepareDeleteProfileSampleProfilesSamplesSampleIdDeleteRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    sampleId: sampleId);
+                    sampleId: sampleId!);
 
                 return __httpRequest;
             }

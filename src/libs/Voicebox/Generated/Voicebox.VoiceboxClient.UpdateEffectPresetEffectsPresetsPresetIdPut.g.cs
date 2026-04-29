@@ -96,7 +96,7 @@ namespace Voicebox
                 PrepareUpdateEffectPresetEffectsPresetsPresetIdPutRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    presetId: presetId,
+                    presetId: presetId!,
                     request: request);
 
                 return __httpRequest;

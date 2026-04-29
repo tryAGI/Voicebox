@@ -81,7 +81,7 @@ namespace Voicebox
                 PrepareDeleteCaptureEndpointCapturesCaptureIdDeleteRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    captureId: captureId);
+                    captureId: captureId!);
 
                 return __httpRequest;
             }

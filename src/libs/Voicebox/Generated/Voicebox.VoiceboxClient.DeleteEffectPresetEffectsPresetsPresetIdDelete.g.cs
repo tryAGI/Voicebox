@@ -82,7 +82,7 @@ namespace Voicebox
                 PrepareDeleteEffectPresetEffectsPresetsPresetIdDeleteRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    presetId: presetId);
+                    presetId: presetId!);
 
                 return __httpRequest;
             }

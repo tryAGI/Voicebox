@@ -82,7 +82,7 @@ namespace Voicebox
                 PrepareDeleteChannelChannelsChannelIdDeleteRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    channelId: channelId);
+                    channelId: channelId!);
 
                 return __httpRequest;
             }

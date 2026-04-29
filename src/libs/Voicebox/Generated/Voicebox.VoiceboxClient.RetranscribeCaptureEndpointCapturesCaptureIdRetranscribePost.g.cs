@@ -95,7 +95,7 @@ namespace Voicebox
                 PrepareRetranscribeCaptureEndpointCapturesCaptureIdRetranscribePostRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    captureId: captureId,
+                    captureId: captureId!,
                     request: request);
 
                 return __httpRequest;

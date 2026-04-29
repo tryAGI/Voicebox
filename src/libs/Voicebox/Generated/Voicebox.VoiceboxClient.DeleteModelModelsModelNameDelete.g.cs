@@ -82,7 +82,7 @@ namespace Voicebox
                 PrepareDeleteModelModelsModelNameDeleteRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    modelName: modelName);
+                    modelName: modelName!);
 
                 return __httpRequest;
             }
