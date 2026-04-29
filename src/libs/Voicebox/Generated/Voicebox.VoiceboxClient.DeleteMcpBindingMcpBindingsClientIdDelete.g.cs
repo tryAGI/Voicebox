@@ -81,7 +81,7 @@ namespace Voicebox
                 PrepareDeleteMcpBindingMcpBindingsClientIdDeleteRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    clientId: clientId);
+                    clientId: clientId!);
 
                 return __httpRequest;
             }

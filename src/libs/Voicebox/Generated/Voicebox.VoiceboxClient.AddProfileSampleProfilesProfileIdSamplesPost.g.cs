@@ -81,9 +81,37 @@ namespace Voicebox
 #endif
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
                             __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent($"{profileId}"),
+                                content: new global::System.Net.Http.StringContent(profileId ?? string.Empty),
                                 name: "\"profile_id\"");
                             var __contentFile = new global::System.Net.Http.ByteArrayContent(request.File ?? global::System.Array.Empty<byte>());
+                            __contentFile.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                request.Filename is null
+                                    ? "application/octet-stream"
+                                    : (global::System.IO.Path.GetExtension(request.Filename) ?? string.Empty).ToLowerInvariant() switch
+                                    {
+                                        ".aac" => "audio/aac",
+                                        ".flac" => "audio/flac",
+                                        ".gif" => "image/gif",
+                                        ".jpeg" => "image/jpeg",
+                                        ".jpg" => "image/jpeg",
+                                        ".json" => "application/json",
+                                        ".m4a" => "audio/mp4",
+                                        ".mp3" => "audio/mpeg",
+                                        ".mp4" => "video/mp4",
+                                        ".mpeg" => "audio/mpeg",
+                                        ".mpga" => "audio/mpeg",
+                                        ".oga" => "audio/ogg",
+                                        ".ogg" => "audio/ogg",
+                                        ".opus" => "audio/ogg",
+                                        ".pdf" => "application/pdf",
+                                        ".png" => "image/png",
+                                        ".txt" => "text/plain",
+                                        ".wav" => "audio/wav",
+                                        ".weba" => "audio/webm",
+                                        ".webm" => "video/webm",
+                                        ".webp" => "image/webp",
+                                        _ => "application/octet-stream",
+                                    });
                             __httpRequestContent.Add(
                                 content: __contentFile,
                                 name: "\"file\"",
@@ -93,7 +121,7 @@ namespace Voicebox
                                 __contentFile.Headers.ContentDisposition.FileNameStar = null;
                             }
                             __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent($"{request.ReferenceText}"),
+                                content: new global::System.Net.Http.StringContent(request.ReferenceText ?? string.Empty),
                                 name: "\"reference_text\"");
                             __httpRequest.Content = __httpRequestContent;
                 global::Voicebox.AutoSDKRequestOptionsSupport.ApplyHeaders(
@@ -107,7 +135,7 @@ namespace Voicebox
                 PrepareAddProfileSampleProfilesProfileIdSamplesPostRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    profileId: profileId,
+                    profileId: profileId!,
                     request: request);
 
                 return __httpRequest;

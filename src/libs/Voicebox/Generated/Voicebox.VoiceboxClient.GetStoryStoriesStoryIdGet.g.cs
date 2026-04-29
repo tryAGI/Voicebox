@@ -82,7 +82,7 @@ namespace Voicebox
                 PrepareGetStoryStoriesStoryIdGetRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    storyId: storyId);
+                    storyId: storyId!);
 
                 return __httpRequest;
             }

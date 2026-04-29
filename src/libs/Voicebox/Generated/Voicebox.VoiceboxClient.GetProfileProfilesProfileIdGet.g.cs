@@ -82,7 +82,7 @@ namespace Voicebox
                 PrepareGetProfileProfilesProfileIdGetRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    profileId: profileId);
+                    profileId: profileId!);
 
                 return __httpRequest;
             }

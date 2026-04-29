@@ -82,7 +82,7 @@ namespace Voicebox
                 PrepareGetCaptureAudioEndpointCapturesCaptureIdAudioGetRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    captureId: captureId);
+                    captureId: captureId!);
 
                 return __httpRequest;
             }

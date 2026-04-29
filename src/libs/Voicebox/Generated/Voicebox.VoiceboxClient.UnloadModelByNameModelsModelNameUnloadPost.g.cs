@@ -82,7 +82,7 @@ namespace Voicebox
                 PrepareUnloadModelByNameModelsModelNameUnloadPostRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    modelName: modelName);
+                    modelName: modelName!);
 
                 return __httpRequest;
             }

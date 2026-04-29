@@ -82,7 +82,7 @@ namespace Voicebox
                 PrepareGetProfileAvatarProfilesProfileIdAvatarGetRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    profileId: profileId);
+                    profileId: profileId!);
 
                 return __httpRequest;
             }

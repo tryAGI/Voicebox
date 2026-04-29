@@ -96,7 +96,7 @@ namespace Voicebox
                 PrepareReorderStoryItemsStoriesStoryIdItemsReorderPutRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    storyId: storyId,
+                    storyId: storyId!,
                     request: request);
 
                 return __httpRequest;

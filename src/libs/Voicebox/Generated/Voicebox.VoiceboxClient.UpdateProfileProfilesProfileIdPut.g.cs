@@ -96,7 +96,7 @@ namespace Voicebox
                 PrepareUpdateProfileProfilesProfileIdPutRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    profileId: profileId,
+                    profileId: profileId!,
                     request: request);
 
                 return __httpRequest;

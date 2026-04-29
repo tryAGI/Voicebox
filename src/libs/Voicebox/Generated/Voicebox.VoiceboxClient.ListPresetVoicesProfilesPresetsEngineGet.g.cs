@@ -82,7 +82,7 @@ namespace Voicebox
                 PrepareListPresetVoicesProfilesPresetsEngineGetRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    engine: engine);
+                    engine: engine!);
 
                 return __httpRequest;
             }
