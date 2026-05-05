@@ -21,6 +21,19 @@ namespace Voicebox
         /// Create Channel<br/>
         /// Create a new audio channel.
         /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Voicebox.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Voicebox.AutoSDKHttpResponse<global::Voicebox.AudioChannelResponse>> CreateChannelChannelsPostAsResponseAsync(
+
+            global::Voicebox.AudioChannelCreate request,
+            global::Voicebox.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create Channel<br/>
+        /// Create a new audio channel.
+        /// </summary>
         /// <param name="deviceIds"></param>
         /// <param name="name"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
