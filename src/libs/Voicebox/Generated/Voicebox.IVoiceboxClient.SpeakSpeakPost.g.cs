@@ -27,6 +27,22 @@ namespace Voicebox
         /// ``status="generating"`` and an ``id`` the caller polls at<br/>
         /// ``GET /generate/{id}/status``.
         /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Voicebox.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Voicebox.AutoSDKHttpResponse<global::Voicebox.GenerationResponse>> SpeakSpeakPostAsResponseAsync(
+
+            global::Voicebox.SpeakRequest request,
+            global::Voicebox.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Speak<br/>
+        /// Speak text in a voice profile. Mirrors voicebox.speak (MCP).<br/>
+        /// Response shape matches POST /generate — a ``GenerationResponse`` with<br/>
+        /// ``status="generating"`` and an ``id`` the caller polls at<br/>
+        /// ``GET /generate/{id}/status``.
+        /// </summary>
         /// <param name="engine"></param>
         /// <param name="language"></param>
         /// <param name="personality">
