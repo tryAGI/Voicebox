@@ -59,5 +59,6 @@ namespace Voicebox
         public EffectPresetCreate()
         {
         }
+
     }
 }

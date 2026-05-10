@@ -40,5 +40,6 @@ namespace Voicebox
         public MCPClientBindingListResponse()
         {
         }
+
     }
 }

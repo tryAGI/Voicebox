@@ -248,5 +248,6 @@ namespace Voicebox
         public StoryItemDetail()
         {
         }
+
     }
 }

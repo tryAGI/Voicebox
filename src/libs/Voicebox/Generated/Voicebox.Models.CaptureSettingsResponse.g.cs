@@ -156,5 +156,6 @@ namespace Voicebox
         public CaptureSettingsResponse()
         {
         }
+
     }
 }

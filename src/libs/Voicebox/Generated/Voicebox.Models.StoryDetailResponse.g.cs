@@ -90,5 +90,6 @@ namespace Voicebox
         public StoryDetailResponse()
         {
         }
+
     }
 }

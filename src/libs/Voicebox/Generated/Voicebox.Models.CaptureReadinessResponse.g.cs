@@ -73,5 +73,6 @@ namespace Voicebox
         public CaptureReadinessResponse()
         {
         }
+
     }
 }

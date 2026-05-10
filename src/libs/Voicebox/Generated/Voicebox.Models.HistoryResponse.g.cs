@@ -195,5 +195,6 @@ namespace Voicebox
         public HistoryResponse()
         {
         }
+
     }
 }

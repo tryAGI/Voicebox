@@ -123,5 +123,6 @@ namespace Voicebox
         public HealthResponse()
         {
         }
+
     }
 }
