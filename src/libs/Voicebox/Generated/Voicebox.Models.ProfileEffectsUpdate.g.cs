@@ -41,5 +41,6 @@ namespace Voicebox
         public ProfileEffectsUpdate()
         {
         }
+
     }
 }

@@ -63,5 +63,6 @@ namespace Voicebox
         public RefinementFlagsModel()
         {
         }
+
     }
 }

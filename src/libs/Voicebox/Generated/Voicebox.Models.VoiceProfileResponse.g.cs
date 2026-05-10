@@ -185,5 +185,6 @@ namespace Voicebox
         public VoiceProfileResponse()
         {
         }
+
     }
 }

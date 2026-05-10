@@ -70,5 +70,6 @@ namespace Voicebox
         public ProfileSampleResponse()
         {
         }
+
     }
 }

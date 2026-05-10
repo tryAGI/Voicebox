@@ -196,5 +196,6 @@ namespace Voicebox
         public GenerationResponse()
         {
         }
+
     }
 }

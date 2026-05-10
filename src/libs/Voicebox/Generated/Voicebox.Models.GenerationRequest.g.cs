@@ -164,5 +164,6 @@ namespace Voicebox
         public GenerationRequest()
         {
         }
+
     }
 }

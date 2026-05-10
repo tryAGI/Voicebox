@@ -43,5 +43,6 @@ namespace Voicebox
         public StoryItemVolumeUpdate()
         {
         }
+
     }
 }
