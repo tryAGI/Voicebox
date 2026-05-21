@@ -51,5 +51,6 @@ namespace Voicebox
         public StoryItemMove()
         {
         }
+
     }
 }

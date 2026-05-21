@@ -66,5 +66,6 @@ namespace Voicebox
         public GenerationSettingsUpdate()
         {
         }
+
     }
 }

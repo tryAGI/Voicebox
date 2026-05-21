@@ -24,6 +24,21 @@ namespace Voicebox
         /// Apply an effects chain to an existing generation, creating a new version.
         /// </summary>
         /// <param name="generationId"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Voicebox.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Voicebox.AutoSDKHttpResponse<global::Voicebox.GenerationVersionResponse>> ApplyEffectsToGenerationGenerationsGenerationIdVersionsApplyEffectsPostAsResponseAsync(
+            string generationId,
+
+            global::Voicebox.ApplyEffectsRequest request,
+            global::Voicebox.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Apply Effects To Generation<br/>
+        /// Apply an effects chain to an existing generation, creating a new version.
+        /// </summary>
+        /// <param name="generationId"></param>
         /// <param name="effectsChain"></param>
         /// <param name="label">
         /// Label for this version (auto-generated if omitted)

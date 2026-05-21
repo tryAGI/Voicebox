@@ -80,5 +80,6 @@ namespace Voicebox
         public AudioChannelResponse()
         {
         }
+
     }
 }

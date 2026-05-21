@@ -74,5 +74,6 @@ namespace Voicebox
         public GenerationSettingsResponse()
         {
         }
+
     }
 }
