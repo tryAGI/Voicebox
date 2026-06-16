@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+install_autosdk_cli() {
+  dotnet tool update --global autosdk.cli --prerelease >/dev/null 2>&1 || \
+    dotnet tool install --global autosdk.cli --prerelease
+}
+
+fetch_spec() {
+  curl "$@" \
+    --fail --silent --show-error --location \
+    --retry 5 --retry-delay 10 --retry-all-errors \
+    --connect-timeout 30 --max-time 300
+}
+
 # OpenAPI spec: extracted from the upstream Voicebox FastAPI app.
 # Voicebox also keeps docs/openapi.json in the repository, but that file can lag
 # behind the current router set. This script generates from backend.app when
@@ -14,8 +26,7 @@ set -euo pipefail
 
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 cd "${script_dir}"
-
-dotnet tool install --global autosdk.cli --prerelease
+install_autosdk_cli
 
 voicebox_repository_url="${VOICEBOX_REPOSITORY_URL:-https://github.com/jamiepine/voicebox.git}"
 voicebox_repository_ref="${VOICEBOX_REPOSITORY_REF:-main}"
@@ -51,13 +62,13 @@ PY
 }
 
 fetch_fallback_openapi() {
-  curl -fsSL "https://raw.githubusercontent.com/jamiepine/voicebox/${voicebox_repository_ref}/docs/openapi.json" \
+  fetch_spec -fsSL "https://raw.githubusercontent.com/jamiepine/voicebox/${voicebox_repository_ref}/docs/openapi.json" \
     -o "${raw_openapi}"
   format_openapi
 }
 
 if [ -n "${voicebox_openapi_url}" ]; then
-  curl -fsSL "${voicebox_openapi_url}" -o "${raw_openapi}"
+  fetch_spec -fsSL "${voicebox_openapi_url}" -o "${raw_openapi}"
   format_openapi
 else
   git clone --depth 1 "${voicebox_repository_url}" "${repo_dir}"
