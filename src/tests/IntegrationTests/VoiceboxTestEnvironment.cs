@@ -138,6 +138,7 @@ public sealed class VoiceboxTestEnvironment : IAsyncDisposable
                 Timeout = ClientTimeout,
                 BaseAddress = baseUri,
             },
+            authorizations: null,
             options: new AutoSDKClientOptions
             {
                 Timeout = ClientTimeout,
