@@ -25,10 +25,10 @@ jobs:
     timeout-minutes: 120
     steps:
       - name: Checkout SDK
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Checkout Voicebox upstream
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: jamiepine/voicebox
           path: voicebox-upstream
