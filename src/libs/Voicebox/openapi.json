@@ -1785,6 +1785,11 @@
             "title": "Status",
             "type": "string"
           },
+          "supports_rocm": {
+            "default": false,
+            "title": "Supports Rocm",
+            "type": "boolean"
+          },
           "vram_used_mb": {
             "anyOf": [
               {
@@ -3499,6 +3504,74 @@
           }
         },
         "summary": "Download Cuda Backend"
+      }
+    },
+    "/backend/download-rocm": {
+      "post": {
+        "description": "Download the ROCm backend binary.",
+        "operationId": "download_rocm_backend_backend_download_rocm_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Download Rocm Backend"
+      }
+    },
+    "/backend/rocm": {
+      "delete": {
+        "description": "Delete the downloaded ROCm backend binary.",
+        "operationId": "delete_rocm_backend_backend_rocm_delete",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Delete Rocm Backend"
+      }
+    },
+    "/backend/rocm-progress": {
+      "get": {
+        "description": "Get ROCm backend download progress via Server-Sent Events.",
+        "operationId": "get_rocm_download_progress_backend_rocm_progress_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Rocm Download Progress"
+      }
+    },
+    "/backend/rocm-status": {
+      "get": {
+        "description": "Get ROCm backend download/availability status.",
+        "operationId": "get_rocm_status_backend_rocm_status_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Rocm Status"
       }
     },
     "/cache/clear": {
