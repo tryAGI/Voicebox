@@ -66,6 +66,12 @@ namespace Voicebox
         public required string Status { get; set; }
 
         /// <summary>
+        /// Default Value: false
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("supports_rocm")]
+        public bool? SupportsRocm { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("vram_used_mb")]
@@ -89,6 +95,9 @@ namespace Voicebox
         /// <param name="gpuType"></param>
         /// <param name="modelDownloaded"></param>
         /// <param name="modelSize"></param>
+        /// <param name="supportsRocm">
+        /// Default Value: false
+        /// </param>
         /// <param name="vramUsedMb"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -103,6 +112,7 @@ namespace Voicebox
             string? gpuType,
             bool? modelDownloaded,
             string? modelSize,
+            bool? supportsRocm,
             double? vramUsedMb)
         {
             this.BackendType = backendType;
@@ -114,6 +124,7 @@ namespace Voicebox
             this.ModelLoaded = modelLoaded;
             this.ModelSize = modelSize;
             this.Status = status ?? throw new global::System.ArgumentNullException(nameof(status));
+            this.SupportsRocm = supportsRocm;
             this.VramUsedMb = vramUsedMb;
         }
 
