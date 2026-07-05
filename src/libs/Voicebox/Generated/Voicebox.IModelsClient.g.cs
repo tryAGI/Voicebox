@@ -4,11 +4,11 @@
 namespace Voicebox
 {
     /// <summary>
-    /// Production-quality Qwen3-TTS voice cloning API<br/>
+    /// Model loading, unloading, and status management<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
-    public partial interface IVoiceboxClient : global::System.IDisposable
+    public partial interface IModelsClient : global::System.IDisposable
     {
         /// <summary>
         /// The HttpClient instance.
@@ -65,31 +65,6 @@ namespace Voicebox
         /// </summary>
         global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; }
 
-
-        /// <summary>
-        /// Root and health check endpoints.
-        /// </summary>
-        public GeneralClient General { get; }
-
-        /// <summary>
-        /// Speech generation, transcription, and audio retrieval.
-        /// </summary>
-        public GenerationClient Generation { get; }
-
-        /// <summary>
-        /// Generation history and statistics.
-        /// </summary>
-        public HistoryClient History { get; }
-
-        /// <summary>
-        /// Model loading, unloading, and status management.
-        /// </summary>
-        public ModelsClient Models { get; }
-
-        /// <summary>
-        /// Voice profile management.
-        /// </summary>
-        public ProfilesClient Profiles { get; }
 
     }
 }

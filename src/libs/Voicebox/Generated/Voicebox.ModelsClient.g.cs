@@ -4,11 +4,11 @@
 namespace Voicebox
 {
     /// <summary>
-    /// Production-quality Qwen3-TTS voice cloning API<br/>
+    /// Model loading, unloading, and status management<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
-    public sealed partial class VoiceboxClient : global::Voicebox.IVoiceboxClient, global::System.IDisposable
+    public sealed partial class ModelsClient : global::Voicebox.IModelsClient, global::System.IDisposable
     {
         /// <summary>
         /// 
@@ -43,56 +43,6 @@ namespace Voicebox
         public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; } = global::Voicebox.SourceGenerationContext.Default;
 
 
-        /// <summary>
-        /// Root and health check endpoints.
-        /// </summary>
-        public GeneralClient General => new GeneralClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-            AutoSDKServerConfiguration = AutoSDKServerConfiguration,
-        };
-
-        /// <summary>
-        /// Speech generation, transcription, and audio retrieval.
-        /// </summary>
-        public GenerationClient Generation => new GenerationClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-            AutoSDKServerConfiguration = AutoSDKServerConfiguration,
-        };
-
-        /// <summary>
-        /// Generation history and statistics.
-        /// </summary>
-        public HistoryClient History => new HistoryClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-            AutoSDKServerConfiguration = AutoSDKServerConfiguration,
-        };
-
-        /// <summary>
-        /// Model loading, unloading, and status management.
-        /// </summary>
-        public ModelsClient Models => new ModelsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-            AutoSDKServerConfiguration = AutoSDKServerConfiguration,
-        };
-
-        /// <summary>
-        /// Voice profile management.
-        /// </summary>
-        public ProfilesClient Profiles => new ProfilesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-            AutoSDKServerConfiguration = AutoSDKServerConfiguration,
-        };
-
 
         private static readonly global::Voicebox.AutoSDKServer[] s_availableServers = new global::Voicebox.AutoSDKServer[]
         {            new global::Voicebox.AutoSDKServer(
@@ -122,7 +72,7 @@ namespace Voicebox
         }
 
         /// <summary>
-        /// Creates a new instance of the VoiceboxClient.
+        /// Creates a new instance of the ModelsClient.
         /// If no httpClient is provided, a new one will be created.
         /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
         /// </summary>
@@ -130,7 +80,7 @@ namespace Voicebox
         /// <param name="baseUri">The base URL for the API. If not provided, the default baseUri from OpenAPI spec will be used.</param>
         /// <param name="authorizations">The authorizations to use for the requests.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
-        public VoiceboxClient(
+        public ModelsClient(
             global::System.Net.Http.HttpClient? httpClient = null,
             global::System.Uri? baseUri = null,
             global::System.Collections.Generic.List<global::Voicebox.EndPointAuthorization>? authorizations = null,
@@ -144,14 +94,14 @@ namespace Voicebox
         }
 
         /// <summary>
-        /// Creates a new instance of the VoiceboxClient with explicit options but no base URL override.
+        /// Creates a new instance of the ModelsClient with explicit options but no base URL override.
         /// Skips passing <c>baseUri</c> so the default base URL from the OpenAPI spec applies.
         /// </summary>
         /// <param name="httpClient">The HttpClient instance. If not provided, a new one will be created.</param>
         /// <param name="authorizations">The authorizations to use for the requests.</param>
         /// <param name="options">Client-wide request defaults such as headers, query parameters, retries, and timeout.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
-        public VoiceboxClient(
+        public ModelsClient(
             global::System.Net.Http.HttpClient? httpClient,
             global::System.Collections.Generic.List<global::Voicebox.EndPointAuthorization>? authorizations,
             global::Voicebox.AutoSDKClientOptions? options,
@@ -165,7 +115,7 @@ namespace Voicebox
         }
 
         /// <summary>
-        /// Creates a new instance of the VoiceboxClient.
+        /// Creates a new instance of the ModelsClient.
         /// If no httpClient is provided, a new one will be created.
         /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
         /// </summary>
@@ -174,7 +124,7 @@ namespace Voicebox
         /// <param name="authorizations">The authorizations to use for the requests.</param>
         /// <param name="options">Client-wide request defaults such as headers, query parameters, retries, and timeout.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
-        public VoiceboxClient(
+        public ModelsClient(
             global::System.Net.Http.HttpClient? httpClient,
             global::System.Uri? baseUri,
             global::System.Collections.Generic.List<global::Voicebox.EndPointAuthorization>? authorizations,

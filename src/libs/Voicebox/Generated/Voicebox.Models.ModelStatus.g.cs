@@ -25,18 +25,6 @@ namespace Voicebox
         /// <summary>
         /// Default Value: false
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("downloading")]
-        public bool? Downloading { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("hf_repo_id")]
-        public string? HfRepoId { get; set; }
-
-        /// <summary>
-        /// Default Value: false
-        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("loaded")]
         public bool? Loaded { get; set; }
 
@@ -65,10 +53,6 @@ namespace Voicebox
         /// <param name="displayName"></param>
         /// <param name="downloaded"></param>
         /// <param name="modelName"></param>
-        /// <param name="downloading">
-        /// Default Value: false
-        /// </param>
-        /// <param name="hfRepoId"></param>
         /// <param name="loaded">
         /// Default Value: false
         /// </param>
@@ -80,15 +64,11 @@ namespace Voicebox
             string displayName,
             bool downloaded,
             string modelName,
-            bool? downloading,
-            string? hfRepoId,
             bool? loaded,
             double? sizeMb)
         {
             this.DisplayName = displayName ?? throw new global::System.ArgumentNullException(nameof(displayName));
             this.Downloaded = downloaded;
-            this.Downloading = downloading;
-            this.HfRepoId = hfRepoId;
             this.Loaded = loaded;
             this.ModelName = modelName ?? throw new global::System.ArgumentNullException(nameof(modelName));
             this.SizeMb = sizeMb;
