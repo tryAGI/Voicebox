@@ -11,18 +11,6 @@ namespace Voicebox
         /// <summary>
         /// 
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("ctx")]
-        public object? Ctx { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("input")]
-        public object? Input { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("loc")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::System.Collections.Generic.IList<global::Voicebox.AnyOf<string, int?>> Loc { get; set; }
@@ -53,20 +41,14 @@ namespace Voicebox
         /// <param name="loc"></param>
         /// <param name="msg"></param>
         /// <param name="type"></param>
-        /// <param name="ctx"></param>
-        /// <param name="input"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public ValidationError(
             global::System.Collections.Generic.IList<global::Voicebox.AnyOf<string, int?>> loc,
             string msg,
-            string type,
-            object? ctx,
-            object? input)
+            string type)
         {
-            this.Ctx = ctx;
-            this.Input = input;
             this.Loc = loc ?? throw new global::System.ArgumentNullException(nameof(loc));
             this.Msg = msg ?? throw new global::System.ArgumentNullException(nameof(msg));
             this.Type = type ?? throw new global::System.ArgumentNullException(nameof(type));

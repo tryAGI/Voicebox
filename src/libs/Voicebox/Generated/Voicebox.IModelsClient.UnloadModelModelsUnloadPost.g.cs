@@ -1,0 +1,28 @@
+#nullable enable
+
+namespace Voicebox
+{
+    public partial interface IModelsClient
+    {
+        /// <summary>
+        /// Unload Model<br/>
+        /// Unload TTS model to free memory.
+        /// </summary>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Voicebox.ApiException"></exception>
+        global::System.Threading.Tasks.Task<string> UnloadModelModelsUnloadPostAsync(
+            global::Voicebox.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Unload Model<br/>
+        /// Unload TTS model to free memory.
+        /// </summary>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Voicebox.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Voicebox.AutoSDKHttpResponse<string>> UnloadModelModelsUnloadPostAsResponseAsync(
+            global::Voicebox.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+    }
+}
