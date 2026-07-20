@@ -34,7 +34,7 @@ jobs:
           path: voicebox-upstream
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v5
+        uses: actions/setup-dotnet@v6
 
       - name: Validate full TTS inputs
         if: ${{ inputs['run-tts-e2e'] && inputs['reference-audio-path'] == '' }}
