@@ -37,10 +37,17 @@ namespace Voicebox
 
 
         internal global::Voicebox.AutoSDKServerConfiguration AutoSDKServerConfiguration { get; set; } = new global::Voicebox.AutoSDKServerConfiguration();
+
+        internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::Voicebox.SourceGenerationContext.Default);
+
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; } = global::Voicebox.SourceGenerationContext.Default;
+        public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext
+        {
+            get => JsonSerializerContextProvider.Value;
+            set => JsonSerializerContextProvider = new(() => value);
+        }
 
 
         /// <summary>
@@ -49,7 +56,7 @@ namespace Voicebox
         public GeneralClient General => new GeneralClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
             AutoSDKServerConfiguration = AutoSDKServerConfiguration,
         };
 
@@ -59,7 +66,7 @@ namespace Voicebox
         public GenerationClient Generation => new GenerationClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
             AutoSDKServerConfiguration = AutoSDKServerConfiguration,
         };
 
@@ -69,7 +76,7 @@ namespace Voicebox
         public HistoryClient History => new HistoryClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
             AutoSDKServerConfiguration = AutoSDKServerConfiguration,
         };
 
@@ -79,7 +86,7 @@ namespace Voicebox
         public ModelsClient Models => new ModelsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
             AutoSDKServerConfiguration = AutoSDKServerConfiguration,
         };
 
@@ -89,7 +96,7 @@ namespace Voicebox
         public ProfilesClient Profiles => new ProfilesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
             AutoSDKServerConfiguration = AutoSDKServerConfiguration,
         };
 
