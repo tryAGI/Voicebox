@@ -4,7 +4,7 @@
 namespace Voicebox
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class BodyTranscribeAudioTranscribePostLanguage
     {

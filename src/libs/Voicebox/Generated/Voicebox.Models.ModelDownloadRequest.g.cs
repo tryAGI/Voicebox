@@ -9,7 +9,7 @@ namespace Voicebox
     public sealed partial class ModelDownloadRequest
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("model_name")]
         [global::System.Text.Json.Serialization.JsonRequired]
