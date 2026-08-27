@@ -11,7 +11,7 @@ namespace Voicebox
     public sealed partial class ModelsClient : global::Voicebox.IModelsClient, global::System.IDisposable
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string DefaultBaseUrl = "http://127.0.0.1:17493/";
 
@@ -41,7 +41,7 @@ namespace Voicebox
         internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::Voicebox.SourceGenerationContext.Default);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext
         {

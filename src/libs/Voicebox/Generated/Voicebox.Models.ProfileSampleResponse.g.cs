@@ -9,28 +9,28 @@ namespace Voicebox
     public sealed partial class ProfileSampleResponse
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("audio_path")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string AudioPath { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Id { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("profile_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string ProfileId { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("reference_text")]
         [global::System.Text.Json.Serialization.JsonRequired]
