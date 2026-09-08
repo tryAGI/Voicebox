@@ -148,7 +148,7 @@ public sealed class VoiceboxTestEnvironment : IAsyncDisposable
     {
         try
         {
-            _ = await client.HealthHealthGetAsync();
+            _ = await client.General.HealthHealthGetAsync();
         }
         catch (HttpRequestException e)
         {

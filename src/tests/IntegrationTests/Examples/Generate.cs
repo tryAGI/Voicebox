@@ -19,13 +19,12 @@ public partial class Tests
 
         //// Generate speech from text with an existing voice profile.
         //// Set VOICEBOX_PROFILE_ID to the profile ID from your local Voicebox instance.
-        var generation = await client.GenerateSpeechGeneratePostAsync(
+        var generation = await client.Generation.GenerateSpeechGeneratePostAsync(
             new GenerationRequest
             {
                 ProfileId = profileId,
                 Text = "Voicebox is running locally from a generated .NET SDK.",
                 Language = GetOptionalEnvironmentVariable("VOICEBOX_LANGUAGE") ?? "en",
-                Engine = GetOptionalEnvironmentVariable("VOICEBOX_ENGINE") ?? "qwen",
                 ModelSize = GetOptionalEnvironmentVariable("VOICEBOX_MODEL_SIZE") ?? "1.7B",
             });
 

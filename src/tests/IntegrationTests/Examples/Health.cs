@@ -17,12 +17,11 @@ public partial class Tests
 
         //// Check whether the local Voicebox backend is available.
         //// The SDK defaults to http://127.0.0.1:17493, matching the desktop app backend port.
-        var health = await client.HealthHealthGetAsync();
+        var health = await client.General.HealthHealthGetAsync();
 
         health.Should().NotBeNull();
         health.Status.Should().NotBeNullOrEmpty();
 
         Console.WriteLine($"Voicebox status: {health.Status}");
-        Console.WriteLine($"Backend: {health.BackendType ?? "unknown"}");
     }
 }

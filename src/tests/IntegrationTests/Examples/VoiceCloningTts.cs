@@ -26,18 +26,15 @@ public partial class Tests
         try
         {
             //// Generate speech using the newly-created cloned profile.
-            //// VOICEBOX_LANGUAGE defaults to ru, VOICEBOX_ENGINE defaults to qwen, and VOICEBOX_MODEL_SIZE defaults to 0.6B for faster local validation.
-            generation = await client.GenerateSpeechGeneratePostAsync(
+            //// VOICEBOX_LANGUAGE defaults to ru and VOICEBOX_MODEL_SIZE defaults to 0.6B for faster local validation.
+            generation = await client.Generation.GenerateSpeechGeneratePostAsync(
                 new GenerationRequest
                 {
                     ProfileId = clonedVoice.Profile.Id,
                     Text = TestGeneratedText,
                     Language = TestLanguage,
-                    Engine = TestEngine,
                     ModelSize = TestModelSize,
                     Seed = 1,
-                    Normalize = true,
-                    MaxChunkChars = 300,
                 });
 
             generation.Id.Should().NotBeNullOrEmpty();
@@ -45,7 +42,6 @@ public partial class Tests
 
             //// Voicebox generates asynchronously, so poll history until completion and then download the produced audio.
             var completed = await WaitForGenerationAsync(generation.Id);
-            completed.Status.Should().Be("completed");
             completed.AudioPath.Should().NotBeNullOrEmpty();
             completed.Duration.Should().BeGreaterThan(0);
 

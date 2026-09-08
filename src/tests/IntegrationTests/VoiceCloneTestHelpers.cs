@@ -6,7 +6,6 @@ namespace Voicebox.IntegrationTests;
 public partial class Tests
 {
     private const string DefaultLanguage = "ru";
-    private const string DefaultEngine = "qwen";
     private const string DefaultModelSize = "0.6B";
     private const string DefaultReferenceText =
         "\u042d\u0442\u043e \u043a\u043e\u0440\u043e\u0442\u043a\u0438\u0439 \u043e\u0431\u0440\u0430\u0437\u0435\u0446 \u0433\u043e\u043b\u043e\u0441\u0430 \u0434\u043b\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 \u043a\u043b\u043e\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f.";
@@ -21,9 +20,6 @@ public partial class Tests
 
     private static string TestLanguage =>
         GetOptionalEnvironmentVariable("VOICEBOX_LANGUAGE") ?? DefaultLanguage;
-
-    private static string TestEngine =>
-        GetOptionalEnvironmentVariable("VOICEBOX_ENGINE") ?? DefaultEngine;
 
     private static string TestModelSize =>
         GetOptionalEnvironmentVariable("VOICEBOX_MODEL_SIZE") ?? DefaultModelSize;
@@ -68,16 +64,14 @@ public partial class Tests
         bool requireExternalAudio)
     {
         var referenceAudio = GetReferenceAudio(requireExternalAudio);
-        var profile = await Client.CreateProfileProfilesPostAsync(
+        var profile = await Client.Profiles.CreateProfileProfilesPostAsync(
             name: $"tryagi-sdk-e2e-{Guid.NewGuid():N}",
             description: "Temporary profile created by tryAGI.Voicebox integration tests.",
-            language: TestLanguage,
-            voiceType: "cloned",
-            defaultEngine: TestEngine);
+            language: TestLanguage);
 
         try
         {
-            var sample = await Client.AddProfileSampleProfilesProfileIdSamplesPostAsync(
+            var sample = await Client.Profiles.AddProfileSampleProfilesProfileIdSamplesPostAsync(
                 profileId: profile.Id,
                 file: referenceAudio.Bytes,
                 filename: referenceAudio.Filename,
@@ -102,20 +96,14 @@ public partial class Tests
 
         while (DateTimeOffset.UtcNow < deadline)
         {
-            var generation = await Client.GetGenerationHistoryGenerationIdGetAsync(generationId);
-            var status = generation.Status ?? "completed";
-
-            if (status.Equals("completed", StringComparison.OrdinalIgnoreCase))
+            try
             {
-                return generation;
+                return await Client.History.GetGenerationHistoryGenerationIdGetAsync(generationId);
             }
-
-            if (status.Equals("failed", StringComparison.OrdinalIgnoreCase))
+            catch (ApiException e) when (e.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                Assert.Fail($"Voicebox generation failed: {generation.Error ?? "unknown error"}");
+                await Task.Delay(TimeSpan.FromSeconds(1));
             }
-
-            await Task.Delay(TimeSpan.FromSeconds(1));
         }
 
         Assert.Fail($"Voicebox generation {generationId} did not complete within {timeoutSeconds} seconds.");
@@ -139,7 +127,7 @@ public partial class Tests
 
         try
         {
-            _ = await Client.DeleteGenerationHistoryGenerationIdDeleteAsync(generationId);
+            _ = await Client.History.DeleteGenerationHistoryGenerationIdDeleteAsync(generationId);
         }
         catch (Exception e) when (e is HttpRequestException or InvalidOperationException or ApiException)
         {
@@ -155,7 +143,7 @@ public partial class Tests
 
         try
         {
-            _ = await Client.DeleteProfileProfilesProfileIdDeleteAsync(profileId);
+            _ = await Client.Profiles.DeleteProfileProfilesProfileIdDeleteAsync(profileId);
         }
         catch (Exception e) when (e is HttpRequestException or InvalidOperationException or ApiException)
         {

@@ -21,19 +21,16 @@ public partial class Tests
         {
             //// Create a temporary cloned voice profile.
             //// Set VOICEBOX_REFERENCE_AUDIO_PATH to use a real 2-30 second voice clip; otherwise this test uses a generated WAV only for endpoint coverage.
-            profile = await client.CreateProfileProfilesPostAsync(
+            profile = await client.Profiles.CreateProfileProfilesPostAsync(
                 name: $"tryagi-sdk-e2e-{Guid.NewGuid():N}",
                 description: "Temporary profile created by tryAGI.Voicebox integration tests.",
-                language: TestLanguage,
-                voiceType: "cloned",
-                defaultEngine: TestEngine);
+                language: TestLanguage);
 
             profile.Id.Should().NotBeNullOrEmpty();
-            profile.VoiceType.Should().Be("cloned");
             profile.Language.Should().Be(TestLanguage);
 
             //// Attach reference voice audio and its transcript to the profile.
-            var sample = await client.AddProfileSampleProfilesProfileIdSamplesPostAsync(
+            var sample = await client.Profiles.AddProfileSampleProfilesProfileIdSamplesPostAsync(
                 profileId: profile.Id,
                 file: referenceAudio.Bytes,
                 filename: referenceAudio.Filename,
@@ -43,16 +40,9 @@ public partial class Tests
             sample.ProfileId.Should().Be(profile.Id);
             sample.ReferenceText.Should().Be(TestReferenceText);
 
-            //// Read the sample list back through the API and update the transcript.
-            var samples = await client.GetProfileSamplesProfilesProfileIdSamplesGetAsync(profile.Id);
+            //// Read the sample list back through the API.
+            var samples = await client.Profiles.GetProfileSamplesProfilesProfileIdSamplesGetAsync(profile.Id);
             samples.Select(x => x.Id).Should().Contain(sample.Id);
-
-            var updatedReferenceText = $"{TestReferenceText} Updated.";
-            var updatedSample = await client.UpdateProfileSampleProfilesSamplesSampleIdPutAsync(
-                sampleId: sample.Id,
-                referenceText: updatedReferenceText);
-
-            updatedSample.ReferenceText.Should().Be(updatedReferenceText);
 
             //// Download the stored sample audio to verify the binary audio endpoint.
             var sampleAudio = await DownloadAudioAsync($"samples/{sample.Id}");

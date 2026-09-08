@@ -17,7 +17,7 @@ public partial class Tests
 
         //// List the local Voicebox voice profiles.
         //// Profiles can be cloned voices, preset voices, or designed voices depending on the server setup.
-        var profiles = await client.ListProfilesProfilesGetAsync();
+        var profiles = await client.Profiles.ListProfilesProfilesGetAsync();
 
         profiles.Should().NotBeNull();
 

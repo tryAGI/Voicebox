@@ -17,7 +17,7 @@ public partial class Tests
 
         //// Retrieve the server's model status list without loading a model.
         //// This is useful for checking which local TTS/STT assets are downloaded.
-        var status = await client.GetModelStatusModelsStatusGetAsync();
+        var status = await client.Models.GetModelStatusModelsStatusGetAsync();
 
         status.Should().NotBeNull();
         status.Models.Should().NotBeNull();
