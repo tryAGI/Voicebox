@@ -138,7 +138,7 @@ namespace Voicebox
                 PrepareUpdateProfileProfilesProfileIdPutRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    profileId: profileId!,
+                    profileId: profileId,
                     request: request);
 
                 return __httpRequest;
@@ -161,7 +161,7 @@ namespace Voicebox
                                 pathTemplate: "$\"/profiles/{profileId}\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: null,
                                 exception: null,
                                 clientOptions: Options,
@@ -195,7 +195,7 @@ namespace Voicebox
                                 pathTemplate: "$\"/profiles/{profileId}\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: null,
                                 exception: __exception,
                                 clientOptions: Options,
@@ -236,7 +236,7 @@ namespace Voicebox
                                 pathTemplate: "$\"/profiles/{profileId}\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
@@ -284,7 +284,7 @@ namespace Voicebox
                                 pathTemplate: "$\"/profiles/{profileId}\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
@@ -306,7 +306,7 @@ namespace Voicebox
                                 pathTemplate: "$\"/profiles/{profileId}\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
