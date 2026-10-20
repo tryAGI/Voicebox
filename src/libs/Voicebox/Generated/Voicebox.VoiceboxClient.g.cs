@@ -38,14 +38,14 @@ namespace Voicebox
 
         internal global::Voicebox.AutoSDKServerConfiguration AutoSDKServerConfiguration { get; set; } = new global::Voicebox.AutoSDKServerConfiguration();
 
-        internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::Voicebox.SourceGenerationContext.Default);
+        internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext>? JsonSerializerContextProvider { get; set; }
 
         /// <summary>
         ///
         /// </summary>
         public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext
         {
-            get => JsonSerializerContextProvider.Value;
+            get => JsonSerializerContextProvider?.Value ?? global::Voicebox.SourceGenerationContext.Default;
             set => JsonSerializerContextProvider = new(() => value);
         }
 
